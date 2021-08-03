@@ -17,16 +17,20 @@
     "compatibleRange": "^1.8.1",
     "dashboardPanels": [
       {
-        "name": "import",
-        "title": "Import/Export",
+        "name": "questions",
+        "title": "Questions",
         "width": 3,
-        "file": "import.html"
+        "file": "questions.html"
       }
     ]
   },
   "dependencies": {
+    "@polymer/iron-icons": "^3.0.1",
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-card": "^3.0.1",
+    "@polymer/paper-ripple": "^3.0.2",
+    "@polymer/paper-styles": "^3.0.1",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "material-design-lite": "^1.3.0",
     "rollup": "^2.55.1"
   }
 }

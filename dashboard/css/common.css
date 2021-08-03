@@ -9,3 +9,25 @@ body {
 	width: 100%;
 	height: 100%;
 }
+.button {
+	display: inline-block;
+	position: relative;
+}
+
+paper-button.button {
+	min-height: 40px;
+	font-family: 'Roboto-Regular';
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: .0892857143em;
+	background-color: #272727;
+	--paper-button-ink-color: #6A6A6A;
+}
+
+paper-button.button:hover {
+	background-color: #383838;
+}
+
+paper-button.button[disabled] {
+	background-color: #485264;
+}
