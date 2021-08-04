@@ -1,0 +1,19 @@
+#main {
+    width: 100%;
+    height: 100%;
+}
+#questionListDiv {
+    width: 100%;
+    height: 400px;
+}
+
+#bottomButtonDiv {
+    width: 100%;
+    text-align: center;
+}
+
+.button {
+    margin: 5px;
+    width: 181px;
+    height: 40px;
+}

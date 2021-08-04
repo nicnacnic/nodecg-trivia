@@ -6,18 +6,46 @@
 body {
 	font-family: 'Roboto-Regular';
 	color: #f9f9f9;
-	width: 100%;
-	height: 100%;
+	font-family: 'Roboto-Regular';
+	font-weight: 500;
 }
-.button {
+
+.card {
+	padding: 7px 10px 7px 15px;
+	vertical-align: middle;
+	font-weight: 400;
+	font-size: 15px;
+	background-color: #1E1E1E;
+}
+
+.cardHeaderContainer {
 	display: inline-block;
-	position: relative;
+	width: 100%;
+	height: 30px;
+}
+
+.cardHeaderText {
+	line-height: 34px;
+	float: left;
+}
+
+.cardHeaderButton {
+	margin-top: -2px;
+	float: right;
+}
+
+.collapseText {
+	padding: 16px 0 8px 0;
+}
+
+.divider {
+	width: 100%;
+	height: 1px;
+	color: #FFFFFF;
 }
 
 paper-button.button {
 	min-height: 40px;
-	font-family: 'Roboto-Regular';
-	font-weight: 700;
 	font-size: 14px;
 	letter-spacing: .0892857143em;
 	background-color: #272727;
