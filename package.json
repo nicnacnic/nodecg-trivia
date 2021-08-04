@@ -21,6 +21,12 @@
         "title": "Questions",
         "width": 3,
         "file": "questions.html"
+      },
+      {
+        "name": "game-control",
+        "title": "Game Control",
+        "width": 3,
+        "file": "game-control.html"
       }
     ]
   },

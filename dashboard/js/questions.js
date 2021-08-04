@@ -1,3 +1,53 @@
+const questionData = nodecg.Replicant('questionData')
+
+NodeCG.waitForReplicants(questionData).then(() => {
+    questionData.on('change', (newVal) => {
+        let cardDiv = document.getElementById('questionListDiv');
+        cardDiv.innerHTML = '';
+        if (newVal !== undefined) {
+            newVal.forEach(question => {
+                let card = document.createElement('div');
+                card.classList.add('card');
+
+                let cardHeaderDiv = document.createElement('div');
+                cardHeaderDiv.classList.add('cardHeaderContainer');
+
+                let cardHeaderText = document.createElement('div');
+                cardHeaderText.classList.add('cardHeaderText');
+                cardHeaderText.innerHTML = question[0];
+
+                let cardHeaderButton = document.createElement('paper-button');
+                cardHeaderButton.classList.add('cardHeaderButton');
+                cardHeaderButton.setAttribute('toggles');
+                cardHeaderButton.setAttribute('noink');
+                cardHeaderButton.setAttribute('onClick', 'toggleCard(this)')
+                
+                let cardHeaderButtonIcon = document.createElement('iron-icon')
+                cardHeaderButtonIcon.setAttribute('icon', 'expand-more');
+                cardHeaderButton.appendChild(cardHeaderButtonIcon);
+
+                let collapse = document.createElement('iron-collapse');
+                collapse.classList.add('collapse');
+
+                let collapseText = document.createElement('div');
+                collapseText.classList.add('collapseText');
+                collapseText.innerHTML = `Correct: ${question[1]}<br>Wrong: ${question[2]}<br>Wrong: ${question[3]}<br>Wrong: ${question[4]}`
+                
+                let divider = document.createElement('div');
+                divider.classList.add('divider')
+
+                cardHeaderDiv.appendChild(cardHeaderText)
+                cardHeaderDiv.appendChild(cardHeaderButton)
+                card.appendChild(cardHeaderDiv);
+                collapse.appendChild(collapseText);
+                card.appendChild(collapse);
+                cardDiv.appendChild(card);
+                cardDiv.appendChild(divider);
+            })
+        }
+    })
+})
+
 function uploadFile(file, button) {
     if (!file.name.includes('.csv'))
         return;
@@ -35,15 +85,14 @@ function downloadData() {
 }
 
 function toggleCard(element) {
-    let card = element.parentElement.parentElement.childNodes[3];
+    let card = element.parentElement.parentElement.childNodes[1];
     let cardList = document.getElementsByClassName("card");
     for (let i = 0; i < cardList.length; i++) {
-        if (cardList[i].childNodes[3].opened) {
-            cardList[i].childNodes[3].hide();
-            closeCard(cardList[i].childNodes[1].childNodes[3])
+        if (cardList[i].childNodes[1].opened) {
+            cardList[i].childNodes[1].hide();
+            closeCard(cardList[i].childNodes[0].childNodes[1])
         }
     }
-    console.log(element.active)
     if (element.active) {
         card.show();
         openCard(element);
