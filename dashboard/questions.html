@@ -53,12 +53,12 @@
                 &nbsp; Download
             </paper-button>
             <paper-button raised class="button" id="uploadButton"
-                onclick="document.getElementById('fileUpload').click();">
+                onclick="document.getElementById('fileUploadButton').click();">
                 <iron-icon icon="file-upload"></iron-icon>
                 &nbsp; Upload
             </paper-button>
-            <input type="file" id="fileUpload" accept=".csv" style="display: none;"
-                onChange="uploadFile(document.getElementById('fileUpload').files[0], document.getElementById('uploadButton'))"></input>
+            <input type="file" id="fileUploadButton" accept=".csv" style="display: none;"
+                onChange="uploadFile(document.getElementById('fileUploadButton').files[0], document.getElementById('uploadButton'))"></input>
         </div>
     </div>
 </body>
