@@ -18,7 +18,7 @@
     "dashboardPanels": [
       {
         "name": "questions",
-        "title": "Questions",
+        "title": "Question Bank",
         "width": 3,
         "file": "questions.html"
       },
@@ -27,6 +27,13 @@
         "title": "Game Control",
         "width": 3,
         "file": "game-control.html"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "trivia.html",
+        "width": 1920,
+        "height": 1080
       }
     ]
   },
@@ -37,7 +44,10 @@
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-card": "^3.0.1",
+    "@polymer/paper-dropdown-menu": "^3.2.0",
     "@polymer/paper-icon-button": "^3.0.2",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
     "@polymer/paper-ripple": "^3.0.2",
     "@polymer/paper-styles": "^3.0.1",
     "@rollup/plugin-node-resolve": "^13.0.4",

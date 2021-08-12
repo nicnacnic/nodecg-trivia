@@ -1,13 +1,16 @@
 const questionData = nodecg.Replicant('questionData')
+const activeQuestion = nodecg.Replicant('activeQuestion')
 
-NodeCG.waitForReplicants(questionData).then(() => {
+NodeCG.waitForReplicants(questionData, activeQuestion).then(() => {
     questionData.on('change', (newVal) => {
         let cardDiv = document.getElementById('questionListDiv');
         cardDiv.innerHTML = '';
         if (newVal !== undefined) {
+            let cardId = 0;
             newVal.forEach(question => {
                 let card = document.createElement('div');
                 card.classList.add('card');
+                card.setAttribute('id', cardId)
 
                 let cardHeaderDiv = document.createElement('div');
                 cardHeaderDiv.classList.add('cardHeaderContainer');
@@ -43,8 +46,16 @@ NodeCG.waitForReplicants(questionData).then(() => {
                 card.appendChild(collapse);
                 cardDiv.appendChild(card);
                 cardDiv.appendChild(divider);
+
+                cardId++;
             })
         }
+        activeQuestion.on('change', (newVal, oldVal) => {
+            const cardList = document.getElementById('questionListDiv').childNodes;
+            cardList[newVal * 2].style.backgroundColor = '#535353';
+            if (oldVal !== undefined)
+            cardList[oldVal * 2].style.backgroundColor = '#1E1E1E';
+        })
     })
 })
 
@@ -70,6 +81,7 @@ function uploadFile(file, button) {
             &nbsp; Upload`;
         };
     }, 1000)
+    activeQuestion.value = 0;
 }
 
 function downloadData() {

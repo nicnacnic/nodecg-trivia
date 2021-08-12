@@ -1,0 +1,27 @@
+#nextQuestion {
+    width: 378px;
+    height: 40px;
+    background-color: #990000;
+}
+
+#controls {
+    display: inline-block;
+    margin: 15px 50px;
+}
+
+#showQuestion {
+    width: 280px;
+    height: 40px;
+}
+#showAnswer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 280px;
+    height: 40px;
+}
+#selectAnswer {
+    display: flex;
+    width: 36%;
+    float: right;
+    height: 40px;
+}

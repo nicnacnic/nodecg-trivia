@@ -1,0 +1,73 @@
+@font-face {
+    font-family: BalooChettan2;
+    src: url("BalooChettan2-ExtraBold.ttf");
+  }
+
+body {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    top: 0;
+    left: 0;
+    font-family: BalooChettan2;
+    color: white;
+    text-align: center;
+    font-size: 48px;
+    margin: 0;
+}
+
+#background {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.text {
+    z-index: 10;
+    position: absolute;
+    border: 8px solid transparent;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#question {
+    left: 1392px;
+    top: 45px;
+    width: 433px;
+    height: 379px;
+    padding: 16px;
+}
+
+#ans1 {
+    left: 1392px;
+    top: 537px;
+    width: 464px;
+    height: 75px;
+}
+#ans2 {
+    left: 1392px;
+    top: 656px;
+    width: 464px;
+    height: 75px;
+}
+#ans3 {
+    left: 1392px;
+    top: 774px;
+    width: 464px;
+    height: 75px;
+}
+#ans4 {
+    left: 1392px;
+    top: 892px;
+    width: 464px;
+    height: 75px;
+}
+#testDiv {
+    width: 433px;
+    visibility: hidden;
+}
