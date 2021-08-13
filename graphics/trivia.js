@@ -99,8 +99,6 @@ function fitTextQuestion(element, text, maxSize, callback) {
     let elementDiv = document.getElementById(element);
     testDiv.style.fontSize = maxSize + 'pt';
     testDiv.innerHTML = text;
-    console.log(testDiv.offsetWidth);
-    console.log(testDiv.offsetHeight)
     while (testDiv.offsetHeight > 411) {
         maxSize--;
         testDiv.style.fontSize = maxSize + 'pt';
