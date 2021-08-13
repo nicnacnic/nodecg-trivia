@@ -7,4 +7,5 @@ import '@polymer/paper-card/paper-card.js';
 import '@polymer/paper-ripple/paper-ripple.js';
 import '@polymer/paper-styles/paper-styles.js';
 import '@polymer/iron-collapse/iron-collapse.js';
+import '@polymer/iron-icons/av-icons.js';
 import '@polymer/iron-icons/iron-icons.js';

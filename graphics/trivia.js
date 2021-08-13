@@ -4,13 +4,8 @@ const status = nodecg.Replicant('status')
 const elementList = ['question', 'ans1', 'ans2', 'ans3', 'ans4'];
 
 NodeCG.waitForReplicants(questionData, activeQuestion, status).then(() => {
-    activeQuestion.on('change', (newVal, oldVal) => {
-        for (let i = 0; i < elementList.length; i++) {
-            fadeHtml(elementList[i], questionData.value[newVal][i], 32)
-            document.getElementById(elementList[i]).style.borderColor = 'transparent';
-            document.getElementById(elementList[i]).style.backgroundImage = ''
-        }
-    })
+    questionData.on('change', (newVal, oldVal) => loadQuestion())
+    activeQuestion.on('change', (newVal, oldVal) => loadQuestion())
 
     status.on('change', (newVal, oldVal) => {
         if (oldVal !== undefined) {
@@ -36,6 +31,25 @@ NodeCG.waitForReplicants(questionData, activeQuestion, status).then(() => {
         }
     })
 })
+
+function loadQuestion() {
+    try {
+        fadeHtml(elementList[0], questionData.value[activeQuestion.value][0], 32);
+
+        let randNumArray = [1, 2, 3, 4];
+        for (let i = randNumArray.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let temp = randNumArray[i];
+            randNumArray[i] = randNumArray[j];
+            randNumArray[j] = temp;
+        }
+        for (let i = 1; i < elementList.length; i++) {
+            fadeHtml(elementList[i], questionData.value[activeQuestion.value][randNumArray[i - 1]], 32);
+            document.getElementById(elementList[i]).style.borderColor = 'transparent';
+            document.getElementById(elementList[i]).style.backgroundImage = ''
+        }
+    } catch { }
+}
 
 function fadeOut(element, time, callback) {
     let opacity = 1;
@@ -67,26 +81,48 @@ function fitText(element, text, maxSize, callback) {
     let divWidth = parseInt(getComputedStyle(elementDiv).getPropertyValue('width'), 10);
     let divHeight = parseInt(getComputedStyle(elementDiv).getPropertyValue('height'), 10);
     testDiv.style.fontSize = maxSize + 'pt';
-    testDiv.style.fontFamily = elementDiv.style.fontFamily;
     testDiv.innerHTML = text;
-    setTimeout(() => {
-        while (testDiv.offsetHeight > divHeight) {
-            maxSize--;
-            testDiv.style.fontSize = maxSize + 'pt';
-        }
-        elementDiv.style.fontSize = maxSize + 'pt';
-        elementDiv.innerHTML = text;
-        callback(maxSize + 'pt');
-        return;
-    }, 100)
+    while (testDiv.offsetWidth > divWidth || testDiv.offsetHeight > divHeight) {
+        maxSize--;
+        testDiv.style.fontSize = maxSize + 'pt';
+        if (maxSize <= 4)
+            break;
+    }
+    elementDiv.style.fontSize = maxSize + 'pt';
+    elementDiv.innerHTML = text;
+    callback(maxSize + 'pt');
+    return;
+}
+
+function fitTextQuestion(element, text, maxSize, callback) {
+    let testDiv = document.getElementById('questionTestDiv');
+    let elementDiv = document.getElementById(element);
+    testDiv.style.fontSize = maxSize + 'pt';
+    testDiv.innerHTML = text;
+    console.log(testDiv.offsetWidth);
+    console.log(testDiv.offsetHeight)
+    while (testDiv.offsetHeight > 411) {
+        maxSize--;
+        testDiv.style.fontSize = maxSize + 'pt';
+        if (maxSize <= 4)
+            break;
+    }
+    elementDiv.style.fontSize = maxSize + 'pt';
+    elementDiv.innerHTML = text;
+    callback(maxSize + 'pt');
+    return;
 }
 
 function fadeHtml(element, text, fontSize) {
-    fadeOut(element, 250, () => {
-        if (element === 'question')
+    fadeOut(element, 500, () => {
+        if (element === 'question') {
             document.getElementById('question').style.visibility = 'hidden';
-        fitText(element, text, fontSize, () => {
-            fadeIn(element, 500, () => { })
-        })
+            fitTextQuestion(element, text, fontSize, () => { })
+        }
+        else {
+            fitText(element, text, fontSize, () => {
+                fadeIn(element, 1000, () => { })
+            })
+        }
     })
 }

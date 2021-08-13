@@ -38,9 +38,14 @@ body {
 #question {
     left: 1392px;
     top: 45px;
-    width: 433px;
-    height: 379px;
+    width: 449px;
+    height: 395px;
     padding: 16px;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #ans1 {
@@ -68,6 +73,15 @@ body {
     height: 75px;
 }
 #testDiv {
-    width: 433px;
     visibility: hidden;
+    display: inline-block;
+    font-family: BalooChettan2;
+}
+#questionTestDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    font-family: BalooChettan2;
+    max-width: 449px;
 }

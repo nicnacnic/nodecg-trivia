@@ -7,29 +7,26 @@
     <link rel="stylesheet" href="css/game-control.css" />
     <script src="./js/modules.js"></script>
     <script src="./js/game-control.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
 </head>
 
 <body>
     <div id="main">
         <paper-button raised class="button" id="nextQuestion" onClick="nextQuestion()">
-            <span class="material-icons">
-                play_arrow
-            </span>
+            <iron-icon icon="av:play-arrow"></iron-icon>
             &nbsp; Next Question
         </paper-button>
         <div id="controls">
-            <paper-button raised class="button" id="showQuestion" onClick="showQuestion(this)">
+            <paper-button raised class="button" id="showQuestion" onClick="showQuestion()">
                 Show Question
             </paper-button>
-            <paper-button raised class="button" id="showAnswer" onClick="showAnswer(this)">
+            <paper-button raised class="button" id="showAnswer" onClick="showAnswer()">
                 Show Answer
             </paper-button>
                 <paper-dropdown-menu class="dropdown" id="answerDropdown" label="Answer" vertical-offset="-150">
                     <paper-listbox slot="dropdown-content" class="dropdown-content" id="answerList" onClick="updateSelectedAnswer(this)">
                     </paper-listbox>
                 </paper-dropdown-menu>
-                <paper-button raised class="button" id="selectAnswer" onClick="selectAnswer(this)">
+                <paper-button raised class="button" id="selectAnswer" onClick="selectAnswer()">
                     Select
                 </paper-button>
         </div>

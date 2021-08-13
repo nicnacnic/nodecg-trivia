@@ -32,9 +32,19 @@ NodeCG.waitForReplicants(questionData, activeQuestion).then(() => {
                 let collapse = document.createElement('iron-collapse');
                 collapse.classList.add('collapse');
 
+                let collapseDiv = document.createElement('div');
+                collapseDiv.classList.add('collapseDiv');
+                
                 let collapseText = document.createElement('div');
                 collapseText.classList.add('collapseText');
-                collapseText.innerHTML = `Correct: ${question[1]}<br>Wrong: ${question[2]}<br>Wrong: ${question[3]}<br>Wrong: ${question[4]}`
+                collapseText.innerHTML = `<b>Correct:</b> ${question[1]}<br><b>Incorrect:</b> ${question[2]}<br><b>Incorrect:</b> ${question[3]}<br><b>Incorrect:</b> ${question[4]}`;
+
+                let collapseButton = document.createElement('paper-icon-button');
+                collapseButton.classList.add('collapseButton');
+                collapseButton.setAttribute('icon', 'av:play-circle-outline');
+                collapseButton.setAttribute('id', cardId)
+                collapseButton.setAttribute('noInk')
+                collapseButton.setAttribute('onClick', 'playQuestion(this.id)')
                 
                 let divider = document.createElement('div');
                 divider.classList.add('divider')
@@ -42,7 +52,9 @@ NodeCG.waitForReplicants(questionData, activeQuestion).then(() => {
                 cardHeaderDiv.appendChild(cardHeaderText)
                 cardHeaderDiv.appendChild(cardHeaderButton)
                 card.appendChild(cardHeaderDiv);
-                collapse.appendChild(collapseText);
+                collapseDiv.appendChild(collapseText);
+                collapseDiv.appendChild(collapseButton);
+                collapse.appendChild(collapseDiv);
                 card.appendChild(collapse);
                 cardDiv.appendChild(card);
                 cardDiv.appendChild(divider);
@@ -50,11 +62,14 @@ NodeCG.waitForReplicants(questionData, activeQuestion).then(() => {
                 cardId++;
             })
         }
+
         activeQuestion.on('change', (newVal, oldVal) => {
             const cardList = document.getElementById('questionListDiv').childNodes;
+            try {
             cardList[newVal * 2].style.backgroundColor = '#535353';
             if (oldVal !== undefined)
             cardList[oldVal * 2].style.backgroundColor = '#1E1E1E';
+            } catch {}
         })
     })
 })
@@ -134,4 +149,8 @@ function closeCard(element) {
             clearInterval(flipArrow)
         }
     }, 1)
+}
+
+function playQuestion(id) {
+    activeQuestion.value = parseInt(id, 10);
 }
